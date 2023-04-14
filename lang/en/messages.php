@@ -732,4 +732,6 @@
   'sub_category_form' => 'Sub category form',
   'Confirm' => 'Confirm',
   'commission' => 'Commission',
+  'your' => 'Your',
+  'earning' => 'Earning',
 );

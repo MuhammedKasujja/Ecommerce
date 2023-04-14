@@ -17,7 +17,7 @@
 
         @foreach($supportTicket as $ticket )
             <?php
-            $userDetails = \App\User::where('id', $ticket['customer_id'])->first();
+            $userDetails = \App\Models\User::where('id', $ticket['customer_id'])->first();
             $conversations = \App\Models\SupportTicketConv::where('support_ticket_id', $ticket['id'])->get();
             $admin = \App\Models\Admin::get();
             ?>

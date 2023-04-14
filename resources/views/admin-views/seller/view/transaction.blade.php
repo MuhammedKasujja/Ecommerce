@@ -272,7 +272,7 @@
                                           
                                       </td>
                                       <td>
-                                          {{ App\User::find($transaction['customer_id'])->f_name }} {{ App\User::find($transaction['customer_id'])->l_name }}
+                                          {{ App\Models\User::find($transaction['customer_id'])->f_name }} {{ App\Models\User::find($transaction['customer_id'])->l_name }}
                                           
                                       </td>
                                       <td>{{$transaction['order_id']}}</td>
