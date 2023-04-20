@@ -6,12 +6,9 @@ use App\CPU\CartManager;
 use App\CPU\Helpers;
 use App\CPU\OrderManager;
 use App\Http\Controllers\Controller;
-use App\Models\Admin;
-use App\Models\OrderDetail;
-use App\Models\Seller;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
+
 use function App\CPU\translate;
 
 class OrderController extends Controller

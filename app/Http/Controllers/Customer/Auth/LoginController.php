@@ -5,12 +5,10 @@ namespace App\Http\Controllers\Customer\Auth;
 use App\CPU\CartManager;
 use App\CPU\Helpers;
 use App\Http\Controllers\Controller;
-use App\Models\BusinessSetting;
 use App\Models\Wishlist;
 use App\Models\User;
 use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Validator;
 
 class LoginController extends Controller
 {

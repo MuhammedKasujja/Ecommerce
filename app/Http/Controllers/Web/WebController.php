@@ -7,7 +7,6 @@ use App\CPU\OrderManager;
 use App\CPU\ProductManager;
 use App\CPU\CartManager;
 use App\Http\Controllers\Controller;
-use App\Models\Admin;
 use App\Models\Brand;
 use App\Models\BusinessSetting;
 use App\Models\Cart;
@@ -21,18 +20,11 @@ use App\Models\OrderDetail;
 use App\Models\Product;
 use App\Models\Review;
 use App\Models\Seller;
-use App\Models\ShippingMethod;
 use App\Models\Shop;
-use App\Models\Order;
-use App\Models\Transaction;
-use App\Models\Translation;
-use App\Models\User;
 use App\Models\Wishlist;
 use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Mail;
-use Illuminate\Support\Facades\Session;
 use function App\CPU\translate;
 
 class WebController extends Controller

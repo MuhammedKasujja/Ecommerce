@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\api\v1\auth;
 
 use App\CPU\Helpers;
-use App\CPU\SMS_module;
 use App\Http\Controllers\Controller;
 use App\Models\PhoneOrEmailVerification;
 use App\Models\User;
@@ -11,7 +10,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
-use Illuminate\Support\Str;
 use function App\CPU\translate;
 
 class EmailVerificationController extends Controller

@@ -11,7 +11,6 @@ use App\Models\ShippingAddress;
 use App\Models\SupportTicket;
 use App\Models\Wishlist;
 use App\Models\User;
-use Barryvdh\DomPDF\Facade as PDF;
 use Brian2694\Toastr\Facades\Toastr;
 use Carbon\Carbon;
 use Illuminate\Http\Request;

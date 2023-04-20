@@ -14,11 +14,8 @@ use App\Models\SupportTicketConv;
 use App\Models\Wishlist;
 use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
-use Intervention\Image\Facades\Image;
 
 class CustomerController extends Controller
 {

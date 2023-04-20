@@ -7,7 +7,6 @@ use App\CPU\Convert;
 use App\CPU\Helpers;
 use App\CPU\ImageManager;
 use App\Http\Controllers\Controller;
-use App\Models\AdminWalletHistory;
 use App\Models\OrderTransaction;
 use App\Models\Product;
 use App\Models\Review;
@@ -18,8 +17,6 @@ use App\Models\WithdrawRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Storage;
-use Intervention\Image\Facades\Image;
 use Illuminate\Support\Str;
 
 class SellerController extends Controller

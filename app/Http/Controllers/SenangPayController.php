@@ -3,13 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\CPU\CartManager;
-use App\CPU\Helpers;
 use App\CPU\OrderManager;
 use App\Http\Controllers\Controller;
-use App\Models\Order;
 use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
 class SenangPayController extends Controller
 {

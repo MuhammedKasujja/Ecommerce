@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Web;
 
-use App\CPU\ImageManager;
 use App\Http\Controllers\Controller;
 use App\Models\Review;
 use Brian2694\Toastr\Facades\Toastr;

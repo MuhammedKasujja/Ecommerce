@@ -12,7 +12,6 @@ use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Laravel\Socialite\Facades\Socialite;
-use Session;
 
 class SocialAuthController extends Controller
 {

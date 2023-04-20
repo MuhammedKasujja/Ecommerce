@@ -11,11 +11,9 @@ use App\Models\DealOfTheDay;
 use App\Models\FlashDealProduct;
 use App\Models\Product;
 use App\Models\Translation;
-use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
-use PHPUnit\Exception;
 
 class ProductController extends Controller
 {

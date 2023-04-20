@@ -8,7 +8,6 @@ use App\Http\Controllers\Controller;
 use App\Models\Color;
 use App\Models\Currency;
 use App\Models\HelpTopic;
-use Illuminate\Http\Request;
 
 class ConfigController extends Controller
 {

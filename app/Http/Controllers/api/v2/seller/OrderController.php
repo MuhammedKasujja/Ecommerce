@@ -5,15 +5,9 @@ namespace App\Http\Controllers\api\v2\seller;
 use App\CPU\Helpers;
 use App\CPU\OrderManager;
 use App\Http\Controllers\Controller;
-use App\Models\Admin;
-use App\Models\AdminWallet;
-use App\Models\BusinessSetting;
 use App\Models\Order;
 use App\Models\OrderDetail;
-use App\Models\SellerWallet;
-use App\Models\ShippingMethod;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use function App\CPU\translate;
 
 

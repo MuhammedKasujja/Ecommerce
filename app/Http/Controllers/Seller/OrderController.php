@@ -5,18 +5,9 @@ namespace App\Http\Controllers\Seller;
 use App\CPU\Helpers;
 use App\CPU\OrderManager;
 use App\Http\Controllers\Controller;
-use App\Models\Admin;
-use App\Models\AdminWallet;
 use App\Models\Order;
 use App\Models\Seller;
-use App\Models\OrderDetail;
-use App\Models\Product;
-use App\Models\SellerWallet;
-use App\Models\ShippingMethod;
-use Barryvdh\DomPDF\Facade as PDF;
-use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use function App\CPU\translate;
 
 class OrderController extends Controller

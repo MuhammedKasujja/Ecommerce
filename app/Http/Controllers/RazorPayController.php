@@ -3,18 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\CPU\CartManager;
-use App\CPU\Helpers;
 use App\CPU\OrderManager;
-use App\Models\Order;
-use App\Models\Product;
-use App\Models\OrderTransaction;
 use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Str;
 use Razorpay\Api\Api;
-use Redirect;
-use Session;
 
 class RazorPayController extends Controller
 {

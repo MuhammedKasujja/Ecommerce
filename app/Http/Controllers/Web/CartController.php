@@ -10,7 +10,6 @@ use App\Models\Cart;
 use App\Models\Color;
 use App\Models\Product;
 use Illuminate\Http\Request;
-use Illuminate\Support\Str;
 
 class CartController extends Controller
 {
@@ -51,9 +50,9 @@ class CartController extends Controller
         }
 
         return [
-            'price' => \App\CPU\Helpers::currency_converter($price * $request->quantity),
-            'discount' => \App\CPU\Helpers::currency_converter($discount),
-            'tax' => \App\CPU\Helpers::currency_converter($tax),
+            'price' => Helpers::currency_converter($price * $request->quantity),
+            'discount' => Helpers::currency_converter($discount),
+            'tax' => Helpers::currency_converter($tax),
             'quantity' => $quantity
         ];
     }

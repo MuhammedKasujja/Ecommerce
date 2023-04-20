@@ -8,16 +8,10 @@ use App\CPU\Helpers;
 use App\CPU\OrderManager;
 use App\Library\sslcommerz\SslCommerzNotification;
 use App\Models\BusinessSetting;
-use App\Models\Cart;
 use App\Models\Currency;
-use App\Models\Order;
-use App\Models\Product;
-use App\Models\User;
 use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Str;
-use function App\CPU\convert_price;
 
 class SslCommerzPaymentController extends Controller
 {

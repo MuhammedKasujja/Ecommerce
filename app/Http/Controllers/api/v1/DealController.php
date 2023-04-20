@@ -14,6 +14,10 @@ class DealController extends Controller
         $featured_deal = FlashDeal::with(['products.product.reviews'])
             ->where(['status' => 1])
             ->where(['deal_type' => 'feature_deal'])->first();
+        
+        if(!$featured_deal){
+            return response()->json([], 200);
+        }
 
         $featured_deal = $featured_deal->products->map( function ($data) {
             $data->product = Helpers::product_data_formatting($data->product,false);

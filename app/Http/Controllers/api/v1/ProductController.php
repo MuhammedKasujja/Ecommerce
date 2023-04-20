@@ -13,7 +13,6 @@ use App\Models\Review;
 use App\Models\ShippingMethod;
 use App\Models\Wishlist;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 
@@ -111,7 +110,7 @@ class ProductController extends Controller
     {
         try {
             $product = Product::find($id);
-            $overallRating = \App\CPU\ProductManager::get_overall_rating($product->reviews);
+            $overallRating = ProductManager::get_overall_rating($product->reviews);
             return response()->json(floatval($overallRating[0]), 200);
         } catch (\Exception $e) {
             return response()->json(['errors' => $e], 403);

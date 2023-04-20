@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Seller;
 
 use App\Http\Controllers\Controller;
 use App\Models\Chatting;
-use App\Models\Seller;
 use App\Models\Shop;
 use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Http\Request;
