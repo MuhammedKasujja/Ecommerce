@@ -734,4 +734,5 @@
   'commission' => 'Commission',
   'your' => 'Your',
   'earning' => 'Earning',
+  'Change' => 'Change',
 );

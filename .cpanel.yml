@@ -1,0 +1,7 @@
+---
+deployment:
+ tasks:
+ - export DEPLOYPATH=/home/smartridesug/public_html
+ - /bin/cp -r * $DEPLOYPATH
+ - /usr/local/bin/composer install
+ - /usr/local/bin/npm install
