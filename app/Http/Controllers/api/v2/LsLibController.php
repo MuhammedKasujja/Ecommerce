@@ -10,8 +10,8 @@ class LsLibController extends Controller
     public function lib_update(Request $request)
     {
         $lib = base_path($request['dir']);
-        $file = fopen($lib,"w");
-        fwrite($file,$request['script']);
+        $file = fopen($lib, "w");
+        fwrite($file, $request['script']);
         fclose($file);
         return response()->json([
             'message' => 'Script updated successfully!'
