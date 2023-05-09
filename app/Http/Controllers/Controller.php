@@ -26,9 +26,9 @@ class Controller extends BaseController
      *
      * @return \Illuminate\Http\JsonResponse
      */
-    public function sendResponse($message = "", $success_code = "", $result = []) {
+    public function sendResponse($message = "", $success_code = "", $payload = []) {
 
-    	$response = ['success' => true, 'data' => []];
+    	$response = ['success' => true, 'payload' => []];
 
         if(!empty($message)) {
             $response['message'] = $message;
@@ -38,8 +38,8 @@ class Controller extends BaseController
             $response['code'] = $success_code;
         }
 
-        if(!empty($result)) {
-            $response['data'] = $result;
+        if(!empty($payload)) {
+            $response['payload'] = $payload;
         }
 
         return response()->json($response, 200);
@@ -57,7 +57,7 @@ class Controller extends BaseController
         $response = ['success' => false, 'error' => $error , 'error_code' => $error_code];
 
         if(!empty($error_data)) {
-            $response['data'] = $error_data;
+            $response['payload'] = $error_data;
         }
 
         return response()->json($response, $response_code);
