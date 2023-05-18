@@ -16,6 +16,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Validator;
 
 class Helpers
 {
@@ -678,6 +679,17 @@ class Helpers
         $mpdf_view = $mpdf_view->render();
         $mpdf->WriteHTML($mpdf_view);
         $mpdf->Output( $file_prefix . $file_postfix . '.pdf', 'D');
+    }
+
+    public static function custom_validator($request, $rules, $custom_errors = [])
+    {
+        $validator = Validator::make($request, $rules, $custom_errors);
+
+        if ($validator->fails()) {
+            $error = implode(',', $validator->errors()->all());
+
+            throw new \Exception($error, 101);
+        }
     }
 }
 

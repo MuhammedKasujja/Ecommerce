@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\api\admin;
 
 use App\CPU\Helpers;
 use App\CPU\OrderManager;
@@ -16,7 +16,6 @@ class OrderController extends Controller
     public function list(Request $request, $status)
     {
         $query_param = [];
-        $search = $request['search'];
         if (session()->has('show_inhouse_orders') && session('show_inhouse_orders') == 1) {
             $query = Order::whereHas('details', function ($query) {
                 $query->whereHas('product', function ($query) {
@@ -41,7 +40,6 @@ class OrderController extends Controller
                 });
                 $query_param = ['search' => $request['search']];
             }
-
         } else {
 
             if ($status != 'all') {
@@ -64,7 +62,7 @@ class OrderController extends Controller
         }
 
         $orders = $orders->latest()->paginate(Helpers::pagination_limit())->appends($query_param);
-        return view('admin-views.order.list', compact('orders', 'search'));
+        return $this->sendResponse(payload: $orders);
     }
 
     public function details($id)
@@ -74,7 +72,7 @@ class OrderController extends Controller
             ->whereNotIn('order_group_id', ['def-order-group'])
             ->whereNotIn('id', [$order['id']])
             ->get();
-        return view('admin-views.order.order-details', compact('order', 'linked_orders'));
+        return $this->sendResponse(payload: compact('order', 'linked_orders'));
     }
 
     public function status(Request $request)
@@ -101,14 +99,14 @@ class OrderController extends Controller
 
         $transaction = OrderTransaction::where(['order_id' => $order['id']])->first();
         if (isset($transaction) && $transaction['status'] == 'disburse') {
-            return response()->json($request->order_status);
+            return $this->sendResponse(payload: $request->order_status);
         }
 
         if ($request->order_status == 'delivered' && $order['seller_id'] != null) {
             OrderManager::wallet_manage_on_order_status_change($order, 'admin');
         }
 
-        return response()->json($request->order_status);
+        return $this->sendResponse(payload: $request->order_status);
     }
 
     public function payment_status(Request $request)
@@ -118,7 +116,7 @@ class OrderController extends Controller
             $order->payment_status = $request->payment_status;
             $order->save();
             $data = $request->payment_status;
-            return response()->json($data);
+            return $this->sendResponse(payload: $data);
         }
     }
 
