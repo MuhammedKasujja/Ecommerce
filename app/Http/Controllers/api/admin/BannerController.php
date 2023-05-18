@@ -28,7 +28,7 @@ class BannerController extends Controller
         }
         $banners = $banners->paginate(Helpers::pagination_limit())->appends($query_param);
 
-        return $this->sendResponse(payload: compact('banners', 'search'));
+        return $this->sendResponse(payload: $banners);
     }
 
     public function store(Request $request)

@@ -16,17 +16,16 @@ class SubSubCategoryController extends Controller
     {
         $query_param = [];
         $search = $request['search'];
-        if($request->has('search'))
-        {
+        if ($request->has('search')) {
             $key = explode(' ', $request['search']);
-            $categories = Category::where(['position'=>2])->where(function ($q) use ($key) {
+            $categories = Category::where(['position' => 2])->where(function ($q) use ($key) {
                 foreach ($key as $value) {
                     $q->orWhere('name', 'like', "%{$value}%");
                 }
             });
             $query_param = ['search' => $request['search']];
-        }else{
-            $categories=Category::where(['position'=>2]);
+        } else {
+            $categories = Category::where(['position' => 2]);
         }
         $categories = $categories->latest()->paginate(Helpers::pagination_limit())->appends($query_param);
         return $this->sendResponse(payload: $categories);
@@ -40,15 +39,15 @@ class SubSubCategoryController extends Controller
         $category->parent_id = $request->parent_id;
         $category->position = 2;
         $category->save();
-        foreach($request->lang as $index=>$key)
-        {
-            if($request->name[$index] && $key != 'en')
-            {
+        foreach ($request->lang as $index => $key) {
+            if ($request->name[$index] && $key != 'en') {
                 Translation::updateOrInsert(
-                    ['translationable_type'  => 'App\Models\Category',
+                    [
+                        'translationable_type'  => 'App\Models\Category',
                         'translationable_id'    => $category->id,
                         'locale'                => $key,
-                        'key'                   => 'name'],
+                        'key'                   => 'name'
+                    ],
                     ['value'                 => $request->name[$index]]
                 );
             }
@@ -58,7 +57,7 @@ class SubSubCategoryController extends Controller
 
     public function edit(Request $request)
     {
-        $data = Category::where('id',$request->id)->first();
+        $data = Category::where('id', $request->id)->first();
         return response()->json($data);
     }
     public function update(Request $request)
@@ -73,33 +72,32 @@ class SubSubCategoryController extends Controller
     }
     public function delete(Request $request)
     {
-        $translation = Translation::where('translationable_type','App\Models\Category')
-                                    ->where('translationable_id',$request->id);
+        $translation = Translation::where('translationable_type', 'App\Models\Category')
+            ->where('translationable_id', $request->id);
         $translation->delete();
         Category::destroy($request->id);
         return $this->sendResponse(message: 'Category deleted successfully');
     }
-    public function fetch(Request $request){
-        
-            $data = Category::where('position',2)->orderBy('id','desc')->get();
-            return $this->sendResponse(payload: $data);
-        
+    public function fetch(Request $request)
+    {
+
+        $data = Category::where('position', 2)->orderBy('id', 'desc')->get();
+        return $this->sendResponse(payload: $data);
     }
 
     public function getSubCategory(Request $request)
     {
-        $data = Category::where("parent_id",$request->id)->get();
-        $output="";
-        foreach($data as $row)
-        {
-            $output .= '<option value="'.$row->id.'">'.$row->name.'</option>';
+        $data = Category::where("parent_id", $request->id)->get();
+        $output = "";
+        foreach ($data as $row) {
+            $output .= '<option value="' . $row->id . '">' . $row->name . '</option>';
         }
         echo $output;
     }
 
     public function getCategoryId(Request $request)
     {
-        $data= Category::where('id',$request->id)->first();
-        return $this->sendResponse(payload:$data);
+        $data = Category::where('id', $request->id)->first();
+        return $this->sendResponse(payload: $data);
     }
 }

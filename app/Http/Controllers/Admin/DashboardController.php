@@ -11,12 +11,10 @@ use App\Models\OrderTransaction;
 use App\Models\Product;
 use App\Models\SellerWalletHistory;
 use App\Models\Shop;
-use App\Models\WithdrawRequest;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use Session;
 
 class DashboardController extends Controller
 {

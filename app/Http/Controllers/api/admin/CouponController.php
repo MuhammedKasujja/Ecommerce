@@ -6,7 +6,6 @@ use App\CPU\Convert;
 use App\CPU\Helpers;
 use App\Http\Controllers\Controller;
 use App\Models\Coupon;
-use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -31,7 +30,7 @@ class CouponController extends Controller
         }
 
         $coupouns = $coupouns->latest()->paginate(Helpers::pagination_limit())->appends($query_param);
-        return $this->sendResponse(payload: compact('coupouns', 'search'));
+        return $this->sendResponse(payload: $coupouns);
     }
 
     public function store(Request $request)
@@ -67,8 +66,15 @@ class CouponController extends Controller
 
     public function edit($id)
     {
-        $c = Coupon::where(['id' => $id])->first();
-        return view('admin-views.coupon.edit', compact('c'));
+        try {
+            $coupon = Coupon::where(['id' => $id])->first();
+            if (!$coupon) {
+                throw new \Exception('Coupon not found');
+            }
+            return $this->sendResponse(payload: $coupon);
+        } catch (\Exception $ex) {
+            return $this->sendError($ex->getMessage());
+        }
     }
 
     public function update(Request $request, $id)
@@ -112,8 +118,6 @@ class CouponController extends Controller
         $coupon = Coupon::find($request->id);
         $coupon->status = $request->status;
         $coupon->save();
-        // $data = $request->status;
-        // return response()->json($data);
         return $this->sendResponse(message: 'Coupon status updated!');
     }
 }

@@ -35,7 +35,7 @@ class DealController extends Controller
         }
         $flash_deal = $flash_deal->latest()->paginate(Helpers::pagination_limit())->appends($query_param);
 
-        return $this->sendResponse(payload: compact('flash_deal', 'search'));
+        return $this->sendResponse(payload: $flash_deal);
     }
 
     public function flash_submit(Request $request)
@@ -188,7 +188,7 @@ class DealController extends Controller
             $deals = new DealOfTheDay();
         }
         $deals = $deals->latest()->paginate(Helpers::pagination_limit())->appends($query_param);
-        return $this->sendResponse(payload: compact('deals', 'search'));
+        return $this->sendResponse(payload: $deals);
     }
 
     public function deal_of_day_submit(Request $request)

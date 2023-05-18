@@ -21,9 +21,7 @@ class BusinessSettingsController extends Controller
     public function about_us()
     {
         $about_us = BusinessSetting::where('type', 'about_us')->first();
-        return view('admin-views.business-settings.about-us', [
-            'about_us' => $about_us,
-        ]);
+        return $this->sendResponse(payload: $about_us);
     }
 
     public function about_usUpdate(Request $data)
@@ -32,8 +30,7 @@ class BusinessSettingsController extends Controller
             'about_us' => 'required',
         ]);
         BusinessSetting::where('type', 'about_us')->update(['value' => $data->about_us]);
-        Toastr::success('About Us updated successfully!');
-        return back();
+        return $this->sendResponse(message:'About Us updated successfully!');
     }
 
     public function currency_symbol_position($side)

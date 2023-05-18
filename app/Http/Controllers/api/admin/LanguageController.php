@@ -17,11 +17,6 @@ class LanguageController extends Controller
         return view('admin-views.business-settings.language.index');
     }
 
-    public function index_app()
-    {
-        return view('admin-views.business-settings.language.index-app');
-    }
-
     public function store(Request $request)
     {
         $language = BusinessSetting::where('type', 'language')->first();

@@ -42,7 +42,7 @@ class SupportTicketController extends Controller
     public function single_ticket($id)
     {
         $supportTicket = SupportTicket::where('id', $id)->get();
-        return $this->sendResponse(payload:$supportTicket);
+        return $this->sendResponse(payload: $supportTicket);
     }
     public function replay_submit(Request $request)
     {

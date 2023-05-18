@@ -61,8 +61,8 @@ class BrandController extends Controller
 
     public function edit($id)
     {
-        $b = Brand::where(['id' => $id])->withoutGlobalScopes()->first();
-        return view('admin-views.brand.edit', compact('b'));
+        $brand = Brand::where(['id' => $id])->withoutGlobalScopes()->first();
+        return $this->sendResponse(payload: $brand);
     }
 
     public function update(Request $request, $id)

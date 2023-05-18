@@ -27,7 +27,7 @@ class CurrencyController extends Controller
             $currencies = new Currency();
         }
         $currencies = $currencies->paginate(Helpers::pagination_limit())->appends($query_param);
-        return $this->sendResponse(payload: compact('currencies', 'search'));
+        return $this->sendResponse(payload: $currencies);
     }
 
     public function store(Request $request)
@@ -44,7 +44,7 @@ class CurrencyController extends Controller
     public function edit($id)
     {
         $data = Currency::find($id);
-        return view('admin-views.currency.edit', compact('data'));
+        return $this->sendResponse(payload:$data);
     }
 
     public function update(Request $request, $id)

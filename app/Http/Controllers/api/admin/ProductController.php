@@ -351,9 +351,9 @@ class ProductController extends BaseController
         $product_category = json_decode($product->category_ids);
         $product->colors = json_decode($product->colors);
         $categories = Category::where(['parent_id' => 0])->get();
-        $br = Brand::orderBY('name', 'ASC')->get();
+        $brands = Brand::orderBY('name', 'ASC')->get();
 
-        return $this->sendResponse(payload: compact('categories', 'br', 'product', 'product_category'));
+        return $this->sendResponse(payload: compact('categories', 'brands', 'product', 'product_category'));
     }
 
     public function update(Request $request, $id)

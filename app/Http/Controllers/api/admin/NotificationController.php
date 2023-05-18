@@ -26,7 +26,7 @@ class NotificationController extends Controller
             $notifications = new Notification();
         }
         $notifications = $notifications->latest()->paginate(Helpers::pagination_limit())->appends($query_param);
-        return $this->sendResponse(payload: compact('notifications', 'search'));
+        return $this->sendResponse(payload: $notifications);
     }
 
     public function store(Request $request)

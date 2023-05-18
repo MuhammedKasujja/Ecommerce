@@ -6,7 +6,6 @@ use App\CPU\Helpers;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Translation;
-use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
@@ -60,7 +59,7 @@ class SubCategoryController extends Controller
     {
         $data = Category::where('id', $request->id)->first();
 
-        return response()->json($data);
+        return $this->sendResponse(payload: $data);
     }
 
     public function update(Request $request)

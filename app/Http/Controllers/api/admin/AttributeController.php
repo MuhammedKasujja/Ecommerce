@@ -7,7 +7,6 @@ use App\Http\Controllers\Controller;
 use App\Models\Attribute;
 use Illuminate\Http\Request;
 use App\Models\Translation;
-use Brian2694\Toastr\Facades\Toastr;
 
 class AttributeController extends Controller
 {
@@ -27,7 +26,7 @@ class AttributeController extends Controller
             $attributes = new Attribute();
         }
         $attributes = $attributes->latest()->paginate(Helpers::pagination_limit())->appends($query_param);
-        return $this->sendResponse(payload: compact('attributes', 'search'));
+        return $this->sendResponse(payload: $attributes);
     }
 
     public function store(Request $request)
@@ -48,14 +47,13 @@ class AttributeController extends Controller
                 );
             }
         }
-        Toastr::success('Attribute added successfully!');
         return $this->sendResponse(message: 'Attribute added successfully!');
     }
 
     public function edit($id)
     {
         $attribute = Attribute::withoutGlobalScope('translate')->where('id', $id)->first();
-        return $this->sendResponse(payload: compact('attribute'));
+        return $this->sendResponse(payload: $attribute);
     }
 
     public function update(Request $request)
@@ -77,7 +75,6 @@ class AttributeController extends Controller
                 );
             }
         }
-        Toastr::success('Attribute updated successfully!');
         return $this->sendResponse(message: 'Attribute updated successfully!');
     }
 

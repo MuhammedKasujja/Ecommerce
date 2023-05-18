@@ -32,7 +32,7 @@ class CustomerController extends Controller
             $customers = User::with(['orders']);
         }
         $customers = $customers->latest()->paginate(Helpers::pagination_limit())->appends($query_param);
-        return $this->sendResponse(payload: compact('customers', 'search'));
+        return $this->sendResponse(payload: $customers);
     }
 
     public function status_update(Request $request)
@@ -62,7 +62,7 @@ class CustomerController extends Controller
                 $query_param = ['search' => $request['search']];
             }
             $orders = $orders->latest()->paginate(Helpers::pagination_limit())->appends($query_param);
-            return view('admin-views.customer.customer-view', compact('customer', 'orders', 'search'));
+            return $this->sendResponse(payload:  compact('customer', 'orders'));
         }
         return $this->sendResponse(message: 'Customer not found!');
     }

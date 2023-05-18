@@ -186,7 +186,7 @@ class SellerController extends Controller
     public function order_details($order_id, $seller_id)
     {
         $order = Order::with('shipping')->where(['id' => $order_id])->first();
-        return $this->sendResponse(payload: compact('order', 'seller_id'));
+        return $this->sendResponse(payload:$order);
     }
 
     public function withdraw()

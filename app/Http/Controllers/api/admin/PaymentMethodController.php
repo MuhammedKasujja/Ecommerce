@@ -10,10 +10,6 @@ use Illuminate\Support\Facades\DB;
 
 class PaymentMethodController extends Controller
 {
-    public function index()
-    {
-        return view('admin-views.business-settings.payment-method.index');
-    }
 
     public function update(Request $request, $name)
     {
@@ -252,7 +248,7 @@ class PaymentMethodController extends Controller
                 }
             }
 
-            return back();
+            return $this->sendResponse(message:'Payment method (s) updated successfully');
         } catch (\Exception $ex) {
             return $this->sendError($ex->getMessage());
         }

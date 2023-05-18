@@ -138,7 +138,7 @@ class DashboardController extends Controller
         session()->put('statistics_type', $request['statistics_type']);
         $data = self::order_stats_data();
 
-        return $this->sendResponse(payload: compact('data'));
+        return $this->sendResponse(payload: $data);
     }
 
     public function order_stats_data()

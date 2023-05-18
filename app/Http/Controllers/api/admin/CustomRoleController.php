@@ -4,7 +4,6 @@ namespace App\Http\Controllers\api\admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\AdminRole;
-use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -32,7 +31,7 @@ class CustomRoleController extends Controller
             'updated_at' => now()
         ]);
 
-        return $this->sendResponse(message:'Role added successfully!');
+        return $this->sendResponse(message: 'Role added successfully!');
     }
 
     public function update(Request $request, $id)
@@ -50,6 +49,6 @@ class CustomRoleController extends Controller
             'updated_at' => now()
         ]);
 
-        return $this->sendResponse(message:'Role updated successfully!');
+        return $this->sendResponse(message: 'Role updated successfully!');
     }
 }

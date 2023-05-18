@@ -48,17 +48,17 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'as' => 'admin.'], fu
     // Route::group(['middleware' => ['admin']], function () {
 
         //dashboard routes
-        Route::get('/', [DashboardController::class, 'dashboard'])->name('dashboard'); //previous dashboard route
         Route::group(['prefix' => 'dashboard', 'as' => 'dashboard.'], function () {
             Route::get('/', [DashboardController::class, 'dashboard'])->name('index');
             Route::post('order-stats', [DashboardController::class, 'order_stats'])->name('order-stats');
-            Route::post('business-overview', [DashboardController::class, 'business_overview'])->name('business-overview');
         });
         //system routes
         Route::get('search-function', [SystemController::class, 'search_function'])->name('search-function');
         Route::get('maintenance-mode', [SystemController::class, 'maintenance_mode'])->name('maintenance-mode');
 
-        Route::group(['prefix' => 'custom-role', 'as' => 'custom-role.', 'middleware' => ['module:employee_section']], function () {
+        Route::group(['prefix' => 'custom-role', 'as' => 'custom-role.', 
+        // 'middleware' => ['module:employee_section']
+    ], function () {
             Route::get('create', [CustomRoleController::class, 'create'])->name('create');
             Route::post('create', [CustomRoleController::class, 'store']);
             Route::get('update/{id}', [CustomRoleController::class, 'edit'])->name('update');

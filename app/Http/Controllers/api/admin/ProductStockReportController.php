@@ -21,7 +21,6 @@ class ProductStockReportController extends Controller
 
         $query_param = ['seller_id' => $request['seller_id']];
         $products = $query->paginate(Helpers::pagination_limit())->appends($query_param);
-        $seller_is = $request['seller_id'];
-        return $this->sendResponse(payload: compact('products', 'seller_is'));
+        return $this->sendResponse(payload: $products);
     }
 }

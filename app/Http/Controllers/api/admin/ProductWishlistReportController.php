@@ -8,10 +8,6 @@ use Illuminate\Http\Request;
 
 class ProductWishlistReportController extends Controller
 {
-    public function index()
-    {
-        return view('admin-views.report.product-in-wishlist');
-    }
 
     public function filter(Request $request)
     {

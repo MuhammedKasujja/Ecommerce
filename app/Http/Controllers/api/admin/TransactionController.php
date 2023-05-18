@@ -38,6 +38,6 @@ class TransactionController extends Controller
         }
 
         $transactions = $transactions->latest()->paginate(Helpers::pagination_limit())->appends($query_param);
-        return $this->sendResponse(payload: compact('transactions', 'search', 'status'));
+        return $this->sendResponse(payload: $transactions);
     }
 }

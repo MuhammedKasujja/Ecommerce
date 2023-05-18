@@ -95,6 +95,6 @@ class ShippingMethodController extends Controller
         $shipping = ShippingMethod::find($request->id);
 
         $shipping->delete();
-        return response()->json();
+        return $this->sendResponse(message: 'Shipping Method deleted Successfully!');
     }
 }

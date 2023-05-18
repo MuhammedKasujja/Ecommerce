@@ -6,7 +6,6 @@ use App\CPU\Helpers;
 use App\Http\Controllers\Controller;
 use App\Models\BusinessSetting;
 use App\Models\Contact;
-use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 
@@ -53,13 +52,13 @@ class ContactController extends Controller
             $contacts = new Contact();
         }
         $contacts = $contacts->latest()->paginate(Helpers::pagination_limit())->appends($query_param);
-        return $this->sendResponse(payload: compact('contacts', 'search'));
+        return $this->sendResponse(payload: $contacts);
     }
 
     public function view($id)
     {
         $contact = Contact::findOrFail($id);
-        return $this->sendResponse(payload: compact('contact'));
+        return $this->sendResponse(payload: $contact);
     }
 
     public function update(Request $request, $id)

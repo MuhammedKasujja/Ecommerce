@@ -7,7 +7,6 @@ use App\CPU\ImageManager;
 use App\Http\Controllers\Controller;
 use App\Models\Admin;
 use App\Models\AdminRole;
-use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -37,8 +36,7 @@ class EmployeeController extends Controller
         ]);
 
         if ($request->role_id == 1) {
-            Toastr::warning('Access Denied!');
-            return back();
+            return $this->sendError('Access Denied!');
         }
 
         DB::table('admins')->insert([

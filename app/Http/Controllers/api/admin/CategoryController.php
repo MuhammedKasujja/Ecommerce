@@ -9,7 +9,6 @@ use App\Models\Category;
 use App\Models\Translation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
-use Brian2694\Toastr\Facades\Toastr;
 
 class CategoryController extends Controller
 {
@@ -30,7 +29,7 @@ class CategoryController extends Controller
         }
 
         $categories = $categories->latest()->paginate(Helpers::pagination_limit())->appends($query_param);
-        return $this->sendResponse(payload: compact('categories', 'search'));
+        return $this->sendResponse(payload: $categories);
     }
 
     public function store(Request $request)
@@ -73,7 +72,7 @@ class CategoryController extends Controller
     public function edit(Request $request, $id)
     {
         $category = category::withoutGlobalScopes()->find($id);
-        return view('admin-views.category.category-edit', compact('category'));
+        return $this->sendResponse(payload: $category);
     }
 
     public function update(Request $request)
