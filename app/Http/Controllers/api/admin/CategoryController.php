@@ -43,25 +43,27 @@ class CategoryController extends Controller
         ]);
 
         $category = new Category;
-        $category->name = $request->name[array_search('en', $request->lang)];
-        $category->slug = Str::slug($request->name[array_search('en', $request->lang)]);
+        // $category->name = $request->name[array_search('en', $request->lang)];
+        $category->name = $request->name;
+        // $category->slug = Str::slug($request->name[array_search('en', $request->lang)]);
+        $category->slug = Str::slug($request->name);
         $category->icon = ImageManager::upload('category/', 'png', $request->file('image'));
         $category->parent_id = 0;
         $category->position = 0;
         $category->save();
 
         $data = [];
-        foreach ($request->lang as $index => $key) {
-            if ($request->name[$index] && $key != 'en') {
-                array_push($data, array(
-                    'translationable_type' => 'App\Models\Category',
-                    'translationable_id' => $category->id,
-                    'locale' => $key,
-                    'key' => 'name',
-                    'value' => $request->name[$index],
-                ));
-            }
-        }
+        // foreach ($request->lang as $index => $key) {
+        //     if ($request->name[$index] && $key != 'en') {
+        //         array_push($data, array(
+        //             'translationable_type' => 'App\Models\Category',
+        //             'translationable_id' => $category->id,
+        //             'locale' => $key,
+        //             'key' => 'name',
+        //             'value' => $request->name[$index],
+        //         ));
+        //     }
+        // }
         if (count($data)) {
             Translation::insert($data);
         }

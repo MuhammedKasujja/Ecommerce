@@ -114,7 +114,9 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'as' => 'admin.'], fu
             Route::post('update/{id}', [EmployeeController::class, 'update']);
         });
 
-        Route::group(['prefix' => 'category', 'as' => 'category.', 'middleware' => ['module:product_management']], function () {
+        Route::group(['prefix' => 'category', 'as' => 'category.', 
+        // 'middleware' => ['module:product_management']
+    ], function () {
             Route::get('view', [CategoryController::class, 'index'])->name('view');
             Route::get('fetch', [CategoryController::class, 'fetch'])->name('fetch');
             Route::post('store', [CategoryController::class, 'store'])->name('store');
@@ -226,7 +228,9 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'as' => 'admin.'], fu
             Route::get('inhoue-product-sale', [InhouseProductSaleController::class, 'index'])->name('inhoue-product-sale');
             Route::get('seller-product-sale', [SellerProductSaleReportController::class, 'index'])->name('seller-product-sale');
         });
-        Route::group(['prefix' => 'stock', 'as' => 'stock.', 'middleware' => ['module:business_section']], function () {
+        Route::group(['prefix' => 'stock', 'as' => 'stock.', 
+        // 'middleware' => ['module:business_section']
+    ], function () {
             //product stock report
             Route::get('product-stock', [ProductStockReportController::class, 'index'])->name('product-stock');
             Route::post('ps-filter', [ProductStockReportController::class, 'filter'])->name('ps-filter');
