@@ -20,24 +20,24 @@ class BrandController extends Controller
     public function store(Request $request)
     {
         $brand = new Brand;
-        $brand->name = $request->name[array_search('en', $request->lang)];
+        $brand->name = $request->name;
         $brand->image = ImageManager::upload('brand/', 'png', $request->file('image'));
         $brand->status = 1;
         $brand->save();
 
-        foreach ($request->lang as $index => $key) {
-            if ($request->name[$index] && $key != 'en') {
-                Translation::updateOrInsert(
-                    [
-                        'translationable_type'  => 'App\Models\Brand',
-                        'translationable_id'    => $brand->id,
-                        'locale'                => $key,
-                        'key'                   => 'name'
-                    ],
-                    ['value'                 => $request->name[$index]]
-                );
-            }
-        }
+        // foreach ($request->lang as $index => $key) {
+        //     if ($request->name[$index] && $key != 'en') {
+        //         Translation::updateOrInsert(
+        //             [
+        //                 'translationable_type'  => 'App\Models\Brand',
+        //                 'translationable_id'    => $brand->id,
+        //                 'locale'                => $key,
+        //                 'key'                   => 'name'
+        //             ],
+        //             ['value'                 => $request->name[$index]]
+        //         );
+        //     }
+        // }
         return $this->sendResponse(message: 'Brand added successfully!');
     }
 

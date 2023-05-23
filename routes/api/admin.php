@@ -3,6 +3,7 @@
 use App\Http\Controllers\api\admin\AttributeController;
 use App\Http\Controllers\api\admin\Auth\LoginController;
 use App\Http\Controllers\api\admin\BannerController;
+use App\Http\Controllers\api\admin\BrandController;
 use App\Http\Controllers\api\admin\BusinessSettingsController;
 use App\Http\Controllers\api\admin\CategoryController;
 use App\Http\Controllers\api\admin\ContactController;
@@ -146,8 +147,9 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'as' => 'admin.'], fu
             Route::post('get-category-id', [SubSubCategoryController::class, 'getCategoryId'])->name('getCategoryId');
         });
 
-        Route::group(['prefix' => 'brand', 'as' => 'brand.', 'middleware' => ['module:product_management']], function () {
-            Route::get('add-new', [BrandController::class, 'add_new'])->name('add-new');
+        Route::group(['prefix' => 'brand', 'as' => 'brand.',
+        //  'middleware' => ['module:product_management']
+        ], function () {
             Route::post('add-new', [BrandController::class, 'store']);
             Route::get('list', [BrandController::class, 'list'])->name('list');
             Route::get('update/{id}', [BrandController::class, 'edit'])->name('update');
