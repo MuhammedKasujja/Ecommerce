@@ -1,0 +1,3 @@
+[submodule "Modules/OfflineSync"]
+	path = Modules/OfflineSync
+	url = https://github.com/MuhammedKasujja/offlinesync-module.git
